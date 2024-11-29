@@ -1,6 +1,6 @@
 @echo off
 REM Переходим в директорию проекта
-cd /d C:\Python\BOT auto
+cd /d C:\твоя директория
 
 REM Активируем виртуальное окружение
 call .venv\Scripts\activate
