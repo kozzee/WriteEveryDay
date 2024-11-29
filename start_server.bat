@@ -1,9 +1,9 @@
 @echo off
 REM Переходим в директорию проекта
-cd d CUsersUsernameDocumentsMyProject
+cd /d C:\Python\BOT auto
 
 REM Активируем виртуальное окружение
-call venvScriptsactivate
+call .venv\Scripts\activate
 
 REM Запускаем скрипт
-python script.py
+python main.py
