@@ -1,4 +1,4 @@
-import personal, logging, os, asyncio, random    #_____________________________________________________________________________________________persional - Храню тут свои данные
+import personal, logging, os, asyncio, random    #_____________________________________________________________________________________________persional - Храню тут свои промпты
 
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message
@@ -28,7 +28,7 @@ scheduler = AsyncIOScheduler()
 async def start_command(message: Message):
     global ID_CHAT #сделал глобальной, чтобы достать из других функций
     ID_CHAT = message.from_user.id
-    scheduler.add_job(daily_reminder, 'cron', day_of_week='mon-fri', hour=19, minute=29) #__________________________Вываолняет функцию в 12.00   по будням
+    scheduler.add_job(daily_reminder, 'cron', day_of_week='mon-fri', hour=12, minute=00) #____________________________________Выполняет функцию в 12.00   по будням
     await message.reply(f"Привет, {message.from_user.full_name}! Буду присылать тебе статьи каждый рабочий день.")
 
 
@@ -37,15 +37,7 @@ async def create_article(): # Генерируем список статей н�
 
     with GigaChat(credentials=API_TOKEN, verify_ssl_certs=False) as giga:
                 response = giga.chat(personal.prompt_for_list)
-    #str_artcile = response.choices[0].message.content
     themes = response.choices[0].message.content.strip().split('-')
-
-    # Просто уведомление об ошибке
-    # if "|" not in str_artcile and "-" not in str_artcile:
-    #     await bot.send_message(chat_id=ID_CHAT, text="Темы статей не разделены")
-    #     await bot.send_message(chat_id=ID_CHAT, text=str_artcile)
-    #     raise ValueError("Темы статей не разделены символом '|'")
-    # theme_article = random.choice(str_artcile.split("-"))
     return themes
 
 
@@ -72,27 +64,7 @@ async def daily_reminder():
         logging.error(f'Ошибка при выполнении задачи: {e}')
         await bot.send_message(ID_CHAT, f'Ошибув при выполнении задачи: {e}')
 
-    # with GigaChat(credentials=API_TOKEN, verify_ssl_certs=False) as giga:
-    #     selected_theme = await create_article()
-    #     response = giga.chat(f'Я выбрал тему для статьи из твоих предложений: [{selected_theme}]. {personal.prompt_for_article}')
-    #     article = response.choices[0].message.content
-    #await bot.send_message(chat_id=ID_CHAT, text=article)
 
-
-
-
-
-# if __name__ == '__main__':      
-#     scheduler.start()
-#     asyncio.run(dp.start_polling(bot))
-
-
-# if __name__ == "__main__":#___________________________________________________________________________________Запуск бота и планировщик
-#     async def run_bot_and_scheduler():
-#         scheduler.start()
-#         await dp.start_polling(bot)
-
-#     asyncio.run(run_bot_and_scheduler())
 if __name__ == "__main__":
     async def main():
         scheduler.start()
