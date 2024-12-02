@@ -61,7 +61,7 @@ async def daily_reminder():
         await bot.send_message(ID_CHAT, f'Сегодня статья на тему: **{chosen_theme}**\n\n{article}')
     except Exception as e:
         logging.error(f'Ошибка при выполнении задачи: {e}')
-        await bot.send_message(ID_CHAT, f'Ошибув при выполнении задачи: {e}')
+        await bot.send_message(ID_CHAT, f'Ошибка при выполнении задачи: {e}')
 
 
 if __name__ == "__main__":
