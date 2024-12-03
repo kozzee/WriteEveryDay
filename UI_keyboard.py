@@ -13,5 +13,5 @@ def main_kb():
         one_time_keyboard=True,
         input_field_placeholder="Воспользуйтесь меню:"
     )
-    return kb
+    return keyboard
 
