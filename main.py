@@ -31,27 +31,6 @@ async def start_command(message: Message):
     await message.reply(f"Привет, {message.from_user.full_name}! Буду присылать тебе статьи каждый рабочий день.")
 
 
-
-async def create_article(): # Генерируем список статей на день
-
-    with GigaChat(credentials=API_TOKEN, verify_ssl_certs=False) as giga:
-                response = giga.chat(personal.prompt_for_list)
-    themes = response.choices[0].message.content.strip().split('-')
-    return themes
-
-
-# Выбор случайной темы из списка
-def choose_random_theme(themes):
-    return random.choice(themes)
-
-
-async def generate_article(theme):
-    with GigaChat(credentials=API_TOKEN, verify_ssl_certs=False) as giga:
-        response = giga.chat(f'Напиши статью на тему [{theme}]. {personal.prompt_for_article}')
-    article = response.choices[0].message.content
-    return article
-
-
 # Ежедневная отправка сообщения
 async def daily_reminder():
     try:
