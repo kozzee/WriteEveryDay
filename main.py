@@ -4,7 +4,6 @@ from Giga import generate_article, create_article, choose_random_theme
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.filters import CommandStart
-from gigachat import GigaChat
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from UI_keyboard import main_kb
 
