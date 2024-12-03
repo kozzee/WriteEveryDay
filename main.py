@@ -1,5 +1,6 @@
-import personal, logging, os, asyncio, random    #_____________________________________________________________________________________________persional - Храню тут свои промпты
+import logging, os, asyncio   #_____________________________________________________________________________________________persional - Храню тут свои промпты
 
+from Giga import generate_article, create_article, choose_random_theme 
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.filters import CommandStart
@@ -7,8 +8,7 @@ from gigachat import GigaChat
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 
-# Достаю нужные API из системы
-API_TOKEN = os.getenv('API_TOKEN') 
+# Достаю нужные API из системы 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 # Настройка логирования
